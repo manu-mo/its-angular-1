@@ -9,9 +9,9 @@
         <div class="form-floating mt-2">
             <div class="input-group mb-3">
                 <div class="form-floating">
-                    <input [type]="showPassword?'text':'password'" 
-                        class="form-control mb-0" id="passwordInput" email autofocus name="passwordInput"
-                        placeholder="your password..." [(ngModel)]="jsonIn.password" required>
+                    <input [type]="showPassword?'text':'password'"
+                        class="form-control mb-0" id="passwordInput" autofocus name="passwordInput"
+                        placeholder="your password..." [(ngModel)]="jsonIn.password" required> <!-- "showPassword?'text':'password'" è un if -->
                     <label for="passwordInput">Password (*)</label>
                 </div>
                 <span class="input-group-text" role="button" (click)="showPassword = !showPassword">
@@ -29,6 +29,6 @@
         <button class="w-100 btn btn-lg btn-primary" type="button" (click)="signIn()">
             Sign in
         </button>
-        <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
+        <p class="mt-5 mb-3 text-muted">© 2017-2022</p>
     </form>
 </main>

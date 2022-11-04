@@ -1,29 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
-import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
-import { DrinkComponent } from './pages/drink/drink.component';
-import { SearchComponent } from './pages/search/search.component';
+import { HomeComponent } from './home/home.component';
+import { DrinkComponent } from './drink/drink.component';
+import { SearchComponent } from './search/search.component';
+import { LoginComponent } from './login/login.component';
+import { IngredientComponent } from './ingredient/ingredient.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     HomeComponent,
     DrinkComponent,
     SearchComponent,
+    LoginComponent,
+    IngredientComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
-    NgbModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [],

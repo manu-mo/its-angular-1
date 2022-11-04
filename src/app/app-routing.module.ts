@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DrinkComponent } from './pages/drink/drink.component';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { SearchComponent } from './pages/search/search.component';
+import { HomeComponent } from './home/home.component';
+import { DrinkComponent } from './drink/drink.component';
+import { SearchComponent } from './search/search.component';
+import { IngredientComponent } from './ingredient/ingredient.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'ingredient/:ingredientName', component: IngredientComponent},
   { path: 'drink/:idDrink', component: DrinkComponent },
-  { path: '',   redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({

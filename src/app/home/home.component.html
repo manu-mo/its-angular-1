@@ -1,0 +1,30 @@
+<div class="row">
+  <h1 class="h1 col-6">Drinks</h1>
+
+  <form class="row col-6">
+    <div class="input-group m-auto justify-content-end">
+      <button class="btn btn-outline-primary" [routerLink]="'../search/'">Search</button>
+    </div>
+  </form>
+</div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination pagination-sm justify-content-center">
+    <li *ngFor='let letter of alphabeth' class="page-item"><a role="button" class="page-link" (click)=searchByFirstLetter(letter)>{{ letter }}</a></li>
+  </ul>
+</nav>
+
+<div class="row justify-content-center">
+  <div *ngFor="let drink of drinks" [routerLink]="'/drink/' + drink.idDrink" class="col-sm-12 col-md-6 col-lg-4 my-2" style="width: 18rem;">
+    <div class="card">
+      <img [src]='drink.strDrinkThumb' class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{drink.strDrink}}</h5>
+        <p class="card-text">{{drink.strCategory}}</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="btn btn-primary">Open details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
