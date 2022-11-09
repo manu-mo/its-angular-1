@@ -14,11 +14,20 @@ export class AuthService {
         // return this.httpClient.get('/login?username=' + jsonIn.username + '&password=' + jsonIn.password)
         return this.httpClient.post('/login', jsonIn) 
             .pipe(
-                map((response: any) => {
+                map( (response: any) => {
                     localStorage['token'] = response.token;
                     return response.currentUser;
                 })
             )
+    }
+
+    isLogged(): boolean {
+        return Boolean(localStorage['token']);
+      }
+  
+    logout() {
+        localStorage.clear();
+        // redirect logion
     }
     
 }

@@ -10,7 +10,9 @@ import { DrinkComponent } from './drink/drink.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { IngredientComponent } from './ingredient/ingredient.component';
-
+import { CardDrinkComponent } from './shared/card-drink/card-drink.component';
+import { OrdersComponent } from './orders/orders.component';
+import { ListDrinkComponent } from './shared/list-drink/list-drink.component';
 
 
 @NgModule({
@@ -20,7 +22,10 @@ import { IngredientComponent } from './ingredient/ingredient.component';
     DrinkComponent,
     SearchComponent,
     LoginComponent,
-    IngredientComponent
+    IngredientComponent,
+    CardDrinkComponent,
+    OrdersComponent,
+    ListDrinkComponent
   ],
   imports: [
     BrowserModule,

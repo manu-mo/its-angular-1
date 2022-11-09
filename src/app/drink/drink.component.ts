@@ -18,13 +18,13 @@ export class DrinkComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('idDrink')!;
     this.httpClient
       .get('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + id)
-      .subscribe((response: any) => {
+      .subscribe( (response: any) => {
         this.drink = response.drinks[0];
         this.drink.ingredients = [];
         this.drink.instructions = [];
-        Object.keys(this.drink).forEach((key) => {
+        Object.keys(this.drink).forEach( (key) => {
           if (key.startsWith('strIngredient') && this.drink[key]) {
-            const index = key.replace('strIngredients', '');
+            const index = key.replace('strIngredient', '');
             console.log(index);
             this.drink.ingredients.push({
               name: this.drink[key],

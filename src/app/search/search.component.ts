@@ -3,7 +3,7 @@ import { ApiService } from '../_service/api.service';
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.component.html',
+  templateUrl: './search.component.html'
 })
 
 export class SearchComponent implements OnInit {
@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
     ingredient: ''
   }
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.apiService.listAllIngredients()
@@ -27,22 +27,30 @@ export class SearchComponent implements OnInit {
 
   searchByName(name: string) {
     if(this.jsonIn.name === '') {
-      console.log('Name is empty!');
-
+      alert('Name is empty!');
+      // FIXME: disabled button
     }
     else {
       this.apiService.searchCocktailByName(name)
       .subscribe( (response: any) => {
-        this.drinks = response.drinks;
+        if(response.drinks === null) {
+          alert('No drinks found with this name!')
+        } else {
+          this.drinks = response.drinks;
+        }
       })
     }
   }
 
   searchByIngredient(ingredient: string) {
-    this.apiService.searchCocktailByIngredient(ingredient)
+    if(ingredient === '') {
+      alert('Please select an ingredient!')
+    } else {
+      this.apiService.searchCocktailByIngredient(ingredient)
       .subscribe( (response: any) => {
         this.drinks = response.drinks;
       })
+    }
   }
 
 }

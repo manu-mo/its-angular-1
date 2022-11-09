@@ -29,16 +29,16 @@ export class LoginComponent {
       this.showErrors = true;
     } 
     else {
-      this.auth.login(this.jsonIn).subscribe( (response: any) => {
-        if(response.success) {
+      // this.auth.login(this.jsonIn).subscribe( (response: any) => {
+        // if(response.success) {
           // localStorage.token = response.token;
-          this.router.navigateByUrl('home');
+          this.router.navigateByUrl('/home');
         }
-        else {
+        /* else {
           alert('Login errato, riprova');
         }
       })
-    }
+      } */
   }
 
 }

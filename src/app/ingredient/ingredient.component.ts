@@ -8,19 +8,18 @@ import { ApiService } from '../_service/api.service';
 })
 
 export class IngredientComponent implements OnInit {
-  drink: any = {
-    strDrink: "",
-    strDrinkThumb: "",
-    idDrink: ""
-  };
+  drinks: any[] = [];
+  ingredientImg: string = "";
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const ingredientName = this.route.snapshot.paramMap.get('ingredientName')!;
+    
     this.apiService.searchCocktailByIngredient(ingredientName)
     .subscribe((response: any) => {
-      console.log(response);
+      this.drinks = response.drinks;
+      this.ingredientImg = `https://www.thecocktaildb.com/images/ingredients/${ingredientName}-Medium.png`;
     })
   }
 

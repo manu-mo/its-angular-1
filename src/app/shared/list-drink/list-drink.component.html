@@ -1,0 +1,17 @@
+<li class="list-group-item">
+    <input class="form-check-input me-1" type="checkbox" (click)="onSelect($event)">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-6 col-lg-4 my-2" style="width: 18rem;">
+            <div class="card" [class.selected]="drink.selected" [class.featured]="featured" role="button" [routerLink]="'/drink/' + drink.idDrink">
+                <img [src]="drink.strDrinkThumb" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{drink.strDrink}}</h5>
+                    <p class="text-muted">{{drink.strCategory}}</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary">Open details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>

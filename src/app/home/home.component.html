@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
   <h1 class="h1 col-6">Drinks</h1>
 
   <form class="row col-6">
@@ -17,7 +17,7 @@
 <div class="row justify-content-center">
   <div *ngFor="let drink of drinks" [routerLink]="'/drink/' + drink.idDrink" class="col-sm-12 col-md-6 col-lg-4 my-2" style="width: 18rem;">
     <div class="card">
-      <img [src]='drink.strDrinkThumb' class="card-img-top" alt="...">
+      <img [src]="drink.strDrinkThumb" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{drink.strDrink}}</h5>
         <p class="card-text">{{drink.strCategory}}</p>
@@ -27,4 +27,27 @@
       </div>
     </div>
   </div>
-</div>  
+</div> -->
+
+<nav class="navbar bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand">The cocktail DB</a>
+    <button class="btn btn-outline-primary" routerLink="/search">Search</button>
+    <button class="btn btn-outline-primary" routerLink="/orders">Order</button>
+  </div>
+</nav>
+<nav class="mt-3">
+  <ul class="pagination pagination-sm justify-content-center">
+    <li *ngFor="let letter of alphabeth" class="page-item" role="button" [class.active]="letter === currentLetter">
+      <a class="page-link" (click)=searchByFirstLetter(letter)>{{ letter }}</a>
+    </li>
+  </ul>
+</nav>
+<!-- <h1>Featured</h1>
+<app-card-drink class=""  [drink]="drinks[0]" [featured]="true"></app-card-drink> -->
+<h1>Top Drinks</h1>
+<div class="row">
+  <div class="col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let drink of drinks">
+      <app-card-drink [drink]="drink" (onSelectChange)="onCardSelectChange(drink, $event)"></app-card-drink>
+  </div>
+</div>
