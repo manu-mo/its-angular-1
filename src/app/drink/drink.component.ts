@@ -1,47 +1,62 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { Drink } from 'src/app/_models/drink.model';
+import { ApiService } from '../_service/api.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-drink',
   templateUrl: './drink.component.html',
 })
-export class DrinkComponent implements OnInit {
-  drink: any = {
-    ingredients: [],
-    instructions: []
-  };
 
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
+export class DrinkComponent implements OnInit { 
+  drink!: Drink;
+  lang = 'EN';
+  
+  @BlockUI()
+  blockUI!: NgBlockUI;
+
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {
+    this.blockUI.start();
+    setTimeout(() => {
+      this.blockUI.stop();
+    }, 1000);
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('idDrink')!;
-    this.httpClient
-      .get('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + id)
-      .subscribe( (response: any) => {
+
+    this.apiService.searchCocktailById(id)
+      .subscribe((response: any) => {
         this.drink = response.drinks[0];
         this.drink.ingredients = [];
         this.drink.instructions = [];
-        Object.keys(this.drink).forEach( (key) => {
-          if (key.startsWith('strIngredient') && this.drink[key]) {
+        Object.keys(this.drink).forEach((key) => {
+          if (key.startsWith('strIngredient') && (this.drink as any)[key]) {
             const index = key.replace('strIngredient', '');
-            console.log(index);
             this.drink.ingredients.push({
-              name: this.drink[key],
-              measure: this.drink['strMeasure' + index]
+              name: (this.drink as any)[key],
+              measure: (this.drink as any)['strMeasure' + index]
             });
           }
-          if (key.startsWith('strInstructions') && this.drink[key]) {
+          if (key.startsWith('strInstructions') && (this.drink as any)[key]) {
             let lang = key.replace('strInstructions', '');
             if (!lang) {
               lang = 'EN';
             }
-            console.log(lang);
-            this.drink.instructions[lang] = this.drink[key]
+            this.drink.instructions.push({
+              lang: lang,
+              [lang]: (this.drink as any)[key]
+            });
           }
         });
-        console.log(this.drink);
-      })
+        console.log(this.drink.instructions);
+        //this.drink.instructions[lang] = (this.drink as any)[key]
+      });
+  }
+
+  changeLang(lang: string): void {
+    this.lang = lang;
   }
 
 }

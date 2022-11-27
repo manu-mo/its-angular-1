@@ -1,7 +1,18 @@
-<h1>Cocktails with </h1> <!-- FIXME:{{IngredientName}} -->
-<div class="row">
-  <img class="rounded float-start" alt=""> <!-- FIXME:[src]="{{ingredientImg}}" -->
-  <div class="col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let drink of drinks">
-    <app-card-drink [drink]="drink"></app-card-drink>
+<nav class="navbar bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand">The cocktail DB</a>
+    <button class="btn btn-outline-primary" routerLink="/home">Home</button>
+  </div>
+</nav>
+
+<h1>Cocktails with <span>{{ingredientName}}</span></h1>
+<div class="flex-row">
+  <div class="col-4">
+    <img class="rounded float-start img-fluid" [src]="ingredientImg">
+  </div>
+  <div class="row col-8">
+    <div class="col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let drink of drinks">
+      <app-card-drink [drink]="drink"></app-card-drink>
+    </div>
   </div>
 </div>

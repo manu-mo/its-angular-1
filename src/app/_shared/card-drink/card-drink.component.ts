@@ -10,9 +10,7 @@ export class CardDrinkComponent {
   @Input() featured = false;
   @Output() onSelectChange: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() {
-    console.log('CREATO');
-  }
+  constructor() { }
 
   onSelect($event: any) {
     this.onSelectChange.emit($event.currentTarget.checked);

@@ -6,41 +6,27 @@
 </nav>
 
 <div class="input-group">
-<form>
-    
+  <form>
     <div class="input-group m-3">
-        <input type="text" class="form-control" name="drinkName" [(ngModel)]="jsonIn.name" placeholder="Search cocktails by name" aria-label="Search cocktails by name" aria-describedby="button-addon2">
-        <button class="btn btn-primary" type="button" id="drinkName" (click)=searchByName(jsonIn.name)>Search</button>
+      <input type="text" class="form-control" name="drinkName" [(ngModel)]="jsonIn.name"
+        placeholder="Search cocktails by name" aria-label="Search cocktails by name" aria-describedby="button-addon2">
+      <button class="btn btn-primary" type="button" id="drinkName" (click)="searchByName(jsonIn.name)">Search</button>
     </div>
-    
-    <!-- <div class="input-group m-3">
-        <input type="text" class="form-control" name="drinkIngredient" [(ngModel)]="jsonIn.ingredient" placeholder="Search cocktails by ingredient" aria-label="Search cocktails by ingredient" aria-describedby="button-addon2">
-        <button class="btn btn-primary" type="button" id="drinkIngredient" (click)=searchByIngredient(jsonIn.ingredient)>Search</button>
-    </div> -->
     <div class="input-group m-3 wrap">
       <label for="inputPassword3" class="col-sm-3 col-form-label">Ingredient:</label>
-      
-        <select class="form-select post_max m-b" [(ngModel)]="jsonIn.ingredient" id="ingredient" name="ingredient">
-          <option *ngFor="let ingredients of list" [value]=ingredients.strIngredient1>{{ ingredients.strIngredient1 }}</option>
-        </select>
-        <button class="btn btn-primary m-b" type="button" id="drinkIngredient" (click)=searchByIngredient(jsonIn.ingredient)>Search</button>
-      
+      <select class="form-select post_max m-b" [(ngModel)]="jsonIn.ingredient" id="ingredient" name="ingredient">
+        <option *ngFor="let ingredients of list" [value]="ingredients.strIngredient1">{{ingredients.strIngredient1}}
+        </option>
+      </select>
+      <button class="btn btn-primary" type="button" id="drinkIngredient"
+        (click)="searchByIngredient(jsonIn.ingredient)">Search</button>
     </div>
   </form>
 </div>
 
-
 <div class="row justify-content-center">
-    <div *ngFor="let drink of drinks" [routerLink]="'/drink/' + drink.idDrink" class="col-sm-12 col-md-6 col-lg-4 my-2" style="width: 18rem;">
-      <div class="card">
-        <img [src]='drink.strDrinkThumb' class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{drink.strDrink}}</h5>
-          <p class="text-muted">{{drink.strCategory}}</p>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary">Open details</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> 
+  <div *ngFor="let drink of drinks" [routerLink]="'/drink/' + drink.idDrink" class="col-sm-12 col-md-6 col-lg-4 my-2"
+    style="width: 18rem;">
+    <app-card-drink [drink]="drink"></app-card-drink>
+  </div>
+</div>

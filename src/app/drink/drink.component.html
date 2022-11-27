@@ -6,8 +6,9 @@
 </nav>
 
 <div class="card-group m-3">
+
   <div class="card">
-    <img [src]="drink.strDrinkThumb" class="card-img-top" alt="..." />
+    <img [src]="drink.strDrinkThumb" class="card-img-top" />
     <div class="card-body">
       <h4 class="card-title">{{ drink.strDrink }}</h4>
       <p class="card-text">Category: {{ drink.strCategory }}</p>
@@ -27,8 +28,13 @@
 
   <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Instructions:</h5>
-        <p class="card-text">{{ drink.instructions.EN }}</p>
+      <h5 class="card-title">Instructions:</h5>
+      <p *ngFor="let instruction of drink.instructions" class="card-text">{{instruction[lang]}}</p>
     </div>
+    <ul class="list-group list-group-horizontal-xl align-item-end">
+      <li class="list-group-item text-primary" role="button" *ngFor="let instruction of drink.instructions"
+        (click)="changeLang(instruction.lang)">{{instruction.lang}}</li>
+    </ul>
   </div>
+
 </div>

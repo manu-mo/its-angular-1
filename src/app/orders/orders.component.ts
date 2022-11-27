@@ -12,37 +12,45 @@ export class OrdersComponent implements OnInit {
     name: '',
   }
   selectedDrinks: any = [];
+  count: number = 0;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.apiService.searchCocktailByFirstLetter('a')
+      .subscribe((response: any) => {
+        this.drinks = response.drinks;
+      });
   }
 
   searchByName(name: string) {
-    if(this.jsonIn.name === '') {
+    if (this.jsonIn.name === '') {
       alert('Name is empty!');
-      // FIXME: disabled button
+      // TODO: disabled button
     }
     else {
       this.apiService.searchCocktailByName(name)
-      .subscribe( (response: any) => {
-        this.drinks = response.drinks;
-      })
+        .subscribe((response: any) => {
+          this.drinks = response.drinks;
+          this.drinks.sort((a, b) => a.strDrink.localeCompare(b.strDrink))
+        })
     }
   }
 
   onCardSelectChange(drinks: any, $event: boolean) {
-    console.log("drink", drinks, "selezionato?", $event);
     drinks.selected = $event;
-    if($event) {
-      this.selectedDrinks.push(drinks);    
+    if ($event === true) {
+      this.selectedDrinks.push(drinks);
+
+      this.count++;
     }
     else {
-      this.selectedDrinks = this.selectedDrinks.filter((el:any) => el !== this.selectedDrinks);
+      // this.selectedDrinks = this.selectedDrinks.filter((el:any) => el !== this.selectedDrinks);
+      const index = this.selectedDrinks.indexOf(drinks);
+      this.selectedDrinks.splice(index, 1);
+
+      this.count--;
     }
-    console.log(this.selectedDrinks);
   }
-
-
 
 }
