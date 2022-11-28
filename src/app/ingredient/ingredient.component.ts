@@ -16,14 +16,18 @@ export class IngredientComponent implements OnInit {
   @BlockUI()
   blockUI!: NgBlockUI;
   
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {
+  constructor(private apiService: ApiService, private route: ActivatedRoute) { }
+
+  startBlockUI() {
     this.blockUI.start();
     setTimeout(() => {
       this.blockUI.stop();
-    }, 2000);
+    }, 1000);
   }
 
   ngOnInit(): void {
+    this.startBlockUI();
+    
     const name = this.route.snapshot.paramMap.get('ingredientName')!;
     this.ingredientName = name;
     

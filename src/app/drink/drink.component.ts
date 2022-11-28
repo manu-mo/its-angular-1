@@ -16,7 +16,9 @@ export class DrinkComponent implements OnInit {
   @BlockUI()
   blockUI!: NgBlockUI;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {
+  constructor(private apiService: ApiService, private route: ActivatedRoute) { }
+
+  startBlockUI() {
     this.blockUI.start();
     setTimeout(() => {
       this.blockUI.stop();
@@ -24,6 +26,7 @@ export class DrinkComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.startBlockUI();
     const id = this.route.snapshot.paramMap.get('idDrink')!;
 
     this.apiService.searchCocktailById(id)

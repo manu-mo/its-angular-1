@@ -21,6 +21,13 @@ export class SearchComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
 
+  startBlockUI() {
+    this.blockUI.start();
+    setTimeout(() => {
+      this.blockUI.stop();
+    }, 1000);
+  }
+
   ngOnInit(): void {
     this.apiService.listAllIngredients()
       .subscribe((response: any) => {
@@ -28,14 +35,6 @@ export class SearchComponent implements OnInit {
         console.log(this.list);
         this.list.sort((a: { strIngredient1: string; }, b: { strIngredient1: any; }) => a.strIngredient1.localeCompare(b.strIngredient1))
       })
-
-  }
-
-  startBlockUI() {
-    this.blockUI.start();
-    setTimeout(() => {
-      this.blockUI.stop();
-    }, 1000);
   }
 
   searchByName(name: string) {

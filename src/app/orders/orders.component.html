@@ -10,7 +10,7 @@
         <input type="text" class="form-control" name="drinkName" [(ngModel)]="jsonIn.name"
             placeholder="Search cocktails by name" aria-label="Search cocktails by name"
             aria-describedby="button-addon2">
-        <button class="btn btn-primary" type="button" id="drinkName" (click)=searchByName(jsonIn.name)>Search</button>
+        <button class="btn btn-primary" type="button" id="drinkName" (click)="searchByName(jsonIn.name)">Search</button>
     </div>
 </form>
 
