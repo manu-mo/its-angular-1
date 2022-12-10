@@ -37,7 +37,7 @@ export class OrdersComponent implements OnInit {
   searchByName(name: string) {
     if (this.jsonIn.name === '') {
       alert('Name is empty!');
-      // TODO: disabled button
+      //TODO: disabled button
     }
     else {
       this.startBlockUI();

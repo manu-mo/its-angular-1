@@ -36,8 +36,6 @@ export class IngredientComponent implements OnInit {
       this.drinks = response.drinks;
       this.ingredientImg = `https://www.thecocktaildb.com/images/ingredients/${this.ingredientName}-Medium.png`;
     })
-    console.log(this.ingredientName);
-    
   }
 
 }

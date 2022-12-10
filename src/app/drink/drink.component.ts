@@ -53,8 +53,7 @@ export class DrinkComponent implements OnInit {
             });
           }
         });
-        console.log(this.drink.instructions);
-        //this.drink.instructions[lang] = (this.drink as any)[key]
+        // this.drink.instructions[lang] = (this.drink as any)[key]
       });
   }
 
